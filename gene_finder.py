@@ -1,9 +1,8 @@
 # -*- coding: utf-8 -*-
 """
-YOUR HEADER COMMENT HERE
-    What is the right content for a header comment? 
-@author: YOUR NAME HERE 
-    Me? I'm Apurva Raman
+This code analyzes a DNA sequence and outputs snippets of DNA that are likely to be protein-coding genes.
+
+@author: Apurva Raman
     apurvaraman.github.com
 
 """
@@ -18,9 +17,6 @@ def shuffle_string(s):
         NOTE: this is a helper function, you do not
         have to modify this in any way """
     return ''.join(random.sample(s, len(s)))
-
-# YOU WILL START YOUR IMPLEMENTATION FROM HERE DOWN ###
-
 
 def get_complement(nucleotide):
     """ Returns the complementary nucleotide
@@ -64,8 +60,6 @@ def get_complement(nucleotide):
         raise ValueError("No nucleotide was entered.")
     else:
         raise ValueError("A non-nucleotide character was entered.")
-    #FINISHED: Implemented and tested
-
 
 def get_reverse_complement(dna):
     """ Computes the reverse complementary sequence of DNA for the specfied DNA
@@ -90,9 +84,6 @@ def get_reverse_complement(dna):
     reverse_complement_dna = build_complement[::-1]
     return reverse_complement_dna
 
-    # FINISHED: IMPLEMENTED AND TESTED
-
-
 def rest_of_ORF(dna):
     """ Takes a DNA sequence that is assumed to begin with a start
         codon and returns the sequence up to but not including the
@@ -114,8 +105,6 @@ def rest_of_ORF(dna):
         if dna[3*i:3*i+3] == 'TAG' or dna[3*i : 3*i+3] == 'TAA' or dna[3*i : 3*i+3] == 'TGA': #checking if one of the frames is the STOP codon
             return dna[:3*i]
     return dna
-    # FINISHED: IMPLEMENTED AND TESTED
-
 
 def find_all_ORFs_oneframe(dna):
     """ Finds all non-nested open reading frames in the given DNA
@@ -178,7 +167,6 @@ def find_all_ORFs(dna):
     ORFs_allframes.extend(find_all_ORFs_oneframe(dna[1:])) #second frame
     ORFs_allframes.extend(find_all_ORFs_oneframe(dna[2:])) #third frame
     return ORFs_allframes
-    # FINISHED: IMPLEMENTED AND TESTED
 
 
 def find_all_ORFs_both_strands(dna):
@@ -197,7 +185,6 @@ def find_all_ORFs_both_strands(dna):
     ORFs_both_strands.extend(find_all_ORFs(dna)) #first strand
     ORFs_both_strands.extend(find_all_ORFs(get_reverse_complement(dna))) #second strand
     return ORFs_both_strands
-    # FINISHED: IMPLEMENTED AND TESTED
 
 def longest_ORF(dna):
     """ Finds the longest ORF on both strands of the specified DNA and returns it
@@ -214,8 +201,6 @@ def longest_ORF(dna):
     """
     longest_ORF_string = max(find_all_ORFs_both_strands(dna))
     return longest_ORF_string
-    # FINISHED: IMPLEMENTED AND TESTED
-
 
 def longest_ORF_noncoding(dna, num_trials):
     """ Computes the maximum length of the longest ORF over num_trials shuffles
@@ -232,7 +217,6 @@ def longest_ORF_noncoding(dna, num_trials):
         shuffle_longest_ORF.append(longest_length)
         longest_length_all_runs = max(shuffle_longest_ORF)
     return longest_length_all_runs
-    # TODO: add doctest: how do you do this when this is variable? Is testing gene_finder() enough?
 
 def coding_strand_to_AA(dna):
     """ Computes the Protein encoded by a sequence of DNA.  This function
